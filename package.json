@@ -1,0 +1,47 @@
+{
+  "name": "foovar",
+  "version": "0.0.0",
+  "description": "Use Stylus variables in JS.",
+  "main": "index.js",
+  "scripts": {
+    "help": "npm-run-help",
+    "test:build": "BABEL_ENV=test mocha test/**/*.test.js",
+    "test:watch": "BABEL_ENV=test mocha -w test/lib/*.test.js",
+    "build:js": "babel src/ -d lib/",
+    "watch:js": "babel -w src/ -d lib/",
+    "release:js": "NODE_ENV=production babel src/ -d lib/",
+    "clean": "rimraf lib/ && mkdir lib",
+    "build": "npm-run-all -p build:*",
+    "watch": "npm-run-all -p watch:*",
+    "release": "npm-run-all -s clean -p release:*",
+    "start": "npm run watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/all-user/foovar.git"
+  },
+  "keywords": [
+    "stylus",
+    "variable",
+    "javascript"
+  ],
+  "author": "Keita Okamoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/all-user/foovar/issues"
+  },
+  "homepage": "https://github.com/all-user/foovar#readme",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-plugin-unassert": "^2.1.1",
+    "babel-preset-latest": "^6.14.0",
+    "babel-preset-power-assert": "^1.0.0",
+    "eslint": "^3.5.0",
+    "mocha": "^3.0.2",
+    "npm-run-all": "^3.1.0",
+    "npm-run-help": "^1.1.0",
+    "power-assert": "^1.4.1",
+    "rimraf": "^2.5.4"
+  }
+}

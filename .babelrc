@@ -1,0 +1,14 @@
+{
+  "presets": ["latest"],
+  "env": {
+    "development": {
+      "presets": ["power-assert"]
+    },
+    "test": {
+      "presets": ["power-assert"]
+    },
+    "production": {
+      "plugins": ["unassert"]
+    }
+  }
+}

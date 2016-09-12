@@ -1,0 +1,3 @@
+--compilers babel-register
+-R dot
+-c
