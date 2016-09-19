@@ -4,9 +4,8 @@
   "description": "Use Stylus variables in JS.",
   "main": "index.js",
   "scripts": {
+    "test": "BABEL_ENV=test mocha ./test/**/*.test.js",
     "help": "npm-run-help",
-    "test:build": "BABEL_ENV=test mocha test/**/*.test.js",
-    "test:watch": "BABEL_ENV=test mocha -w test/lib/*.test.js",
     "build:js": "babel src/ -d lib/",
     "watch:js": "babel -w src/ -d lib/",
     "release:js": "NODE_ENV=production babel src/ -d lib/",
@@ -37,11 +36,15 @@
     "babel-plugin-unassert": "^2.1.1",
     "babel-preset-latest": "^6.14.0",
     "babel-preset-power-assert": "^1.0.0",
+    "case": "^1.4.1",
     "eslint": "^3.5.0",
     "mocha": "^3.0.2",
     "npm-run-all": "^3.1.0",
     "npm-run-help": "^1.1.0",
     "power-assert": "^1.4.1",
     "rimraf": "^2.5.4"
+  },
+  "peerDependencies": {
+    "stylus": "^0.54.5"
   }
 }
