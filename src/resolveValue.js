@@ -3,9 +3,8 @@ import unwrapExp from './unwrapExp.js';
 export default function resolveValue(node) {
   switch (node.__type) {
   case 'Unit':
-    return node.val;
   case 'String':
-    return node.string;
+    return node.val;
   case 'RGBA':
     {
       const { r, g, b, a } = node;

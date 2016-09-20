@@ -35,6 +35,6 @@ describe('export hsla var:', () => {
   });
 
   it('css string', () => {
-    assert.equal(vars.varName.css, 'hsla(12,34%,56%,.7)');
+    assert.equal(vars.varName.css, 'hsla(12,34%,56%,0.7)');
   });
 });

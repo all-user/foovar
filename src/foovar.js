@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import Promise from 'bluebird';
 import Case from 'case';
 import path from 'path';
 import mkdirp from 'mkdirp';
@@ -20,7 +19,6 @@ function foovarFunc(outPath, options = {}) {
   const fullPath = /^\//.test(outPath) ? outPath : path.resolve(process.cwd(), outPath);
   const incReg = options.include && new RegExp(options.include);
   const excReg = options.exclude && new RegExp(options.exclude);
-  const o = {};
 
   mkdirp.sync(path.dirname(fullPath));
   const body = Object.entries(this.global.scope.locals)
@@ -36,7 +34,7 @@ function foovarFunc(outPath, options = {}) {
     .join(',\n');
 
   const codeStr = `(function() {
-  var FoovarValue = require('foovar').FoovarValue;
+  var FoovarValue = require(${ process.env.BABEL_ENV === 'test' ? '\'../../src/index.js\'' : '\'foovar\'' }).FoovarValue;
 
   module.exports = {
 ${ body }

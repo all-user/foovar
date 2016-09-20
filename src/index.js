@@ -1,9 +1,11 @@
-import FoovarValue from 'FoovarValue.js';
+import FoovarValue from './FoovarValue.js';
 
-module.exports = function() {
+const fn = function() {
   return function(stylus) {
     stylus.define('foovar', require('./foovar.js'));
   };
 };
 
-exports.FoovarValue = FoovarValue;
+fn.FoovarValue = FoovarValue;
+
+module.exports = fn;

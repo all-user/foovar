@@ -43,10 +43,10 @@ describe('export cubic-bezier var:', () => {
   });
 
   it('positive value: stylus css string', () => {
-    assert.equal(vars.varNamePosi.css, 'cubic-bezier(1, 0, 1, 0)');
+    assert.equal(vars.varNamePosi.css, 'cubic-bezier(1,0,1,0)');
   });
 
   it('negative value: stylus css string', () => {
-    assert.equal(vars.varNameNega.css, 'cubic-bezier(-1, 0, -1, 0)');
+    assert.equal(vars.varNameNega.css, 'cubic-bezier(-1,0,-1,0)');
   });
 });

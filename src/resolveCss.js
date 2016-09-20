@@ -6,7 +6,7 @@ export default function resolveCss(node) {
   case 'Unit':
     return `${ node.val }${ node.type }`;
   case 'String':
-    return node.string;
+    return node.val;
   case 'RGBA':
     if (node.raw) {
       return node.raw;
