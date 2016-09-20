@@ -1,5 +1,5 @@
 export default function resolveType(node) {
-  switch (node.constructor.name) {
+  switch (node.__type) {
   case 'Unit':
     return node.type || void 0;
   case 'String':
@@ -11,7 +11,7 @@ export default function resolveType(node) {
   case 'Call':
     return resolveTypeOfCall(node);
   default:
-    console.error(`Can't resolve stylus node type: ${ node.constructor.name }`);
+    console.error(`Can't resolve stylus node type: ${ node.__type }`);
   }
 }
 

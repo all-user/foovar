@@ -1,7 +1,7 @@
 import unwrapExp from './unwrapExp.js';
 
 export default function resolveValue(node) {
-  switch (node.constructor.name) {
+  switch (node.__type) {
   case 'Unit':
     return node.val;
   case 'String':
@@ -19,7 +19,7 @@ export default function resolveValue(node) {
   case 'Call':
     return resolveValueOfCall(node);
   default:
-    console.error(`Can't resolve stylus node value: ${ node.constructor.name }`);
+    console.error(`Can't resolve stylus node value: ${ node.__type }`);
   }
 
 }

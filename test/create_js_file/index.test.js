@@ -23,7 +23,7 @@ describe('create js file:', () => {
       });
   });
 
-  it('exists file.', () => {
+  it('exists file', () => {
     return fs.statAsync(path.resolve(__dirname, './vars.js'))
       .then(stats => {
         assert(stats.isFile());
