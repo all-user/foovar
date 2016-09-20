@@ -10,9 +10,9 @@ export default class FoovarValue {
     };
 
     fn.stylusExpression = stylusExpression;
-    const foovarProto = this.__proto__;
-    foovarProto.__proto__ = fn.__proto__;
-    fn.__proto__ = foovarProto;
+    const foovarProto = Object.getPrototypeOf(this);
+    Object.setPrototypeOf(foovarProto, Object.getPrototypeOf(fn));
+    Object.setPrototypeOf(fn, foovarProto);
     return fn;
   }
 

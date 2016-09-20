@@ -51,6 +51,6 @@ describe('export hash var:', () => {
 
   it('stylus css string', () => {
     assert.equal(vars.varName().stringVar.css, 'outer');
-    assert.equal(vars.varName().nested().stringVar.type, 'inner');
+    assert.equal(vars.varName().nested().stringVar.css, 'inner');
   });
 });

@@ -1,4 +1,6 @@
+import FoovarValue from './FoovarValue.js';
 import unwrapExp from './unwrapExp.js';
+import Case from 'case';
 
 export default function resolveValue(node) {
   switch (node.__type) {
@@ -14,6 +16,13 @@ export default function resolveValue(node) {
     {
       const { h, s, l, a } = node;
       return [h, s, l, a];
+    }
+  case 'Object':
+    {
+      return Object.entries(node.vals).reduce((o, [k, v]) => {
+        o[Case.camel(k)] = new FoovarValue(v);
+        return o;
+      }, {});
     }
   case 'Call':
     return resolveValueOfCall(node);

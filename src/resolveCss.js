@@ -22,6 +22,8 @@ export default function resolveCss(node) {
     }
   case 'Call':
     return resolveCssOfCall(node);
+  case 'Object':
+    return void 0;
   default:
     console.error(`Can't resolve stylus node CSS string: ${ node.__type }`);
   }

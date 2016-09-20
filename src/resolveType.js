@@ -8,6 +8,8 @@ export default function resolveType(node) {
     return 'rgba';
   case 'HSLA':
     return 'hsla';
+  case 'Object':
+    return 'hash';
   case 'Call':
     return resolveTypeOfCall(node);
   default:
