@@ -2,11 +2,8 @@ import 'babel-polyfill';
 import Promise from 'bluebird';
 import Case from 'case';
 import path from 'path';
-import _mkdirp from 'mkdirp';
-import _fs from 'fs';
-
-const mkdirp = Promise.promisify(_mkdirp);
-const fs = Promise.promisifyAll(_fs);
+import mkdirp from 'mkdirp';
+import fs from 'fs';
 
 module.exports =  function(stylus) {
   try {
@@ -25,10 +22,8 @@ function foovarFunc(outPath, options = {}) {
   const excReg = options.exclude && new RegExp(options.exclude);
   const o = {};
 
-  return Promise
-  .try(() => mkdirp(path.dirname(fullPath)))
-  .then(() => {
-    const body = Object.entries(this.global.scope.locals)
+  mkdirp.sync(path.dirname(fullPath));
+  const body = Object.entries(this.global.scope.locals)
     .filter(([k, v]) => {
       if (/Function/.test(v.constructor.name)) return false;
       if (incReg && !incReg.test(k)) return false;
@@ -36,19 +31,17 @@ function foovarFunc(outPath, options = {}) {
       return true;
     })
     .map(([k, v]) => {
-      return `${ Case.camel(k) }: new FoovarValue(${ JSON.stringify(v, null, 2) })`;
+      return `${ Case.camel(k) }: new FoovarValue(${ JSON.stringify(v, null, 2) })`.replace(/^(.+)$/gm, '    $1');
     })
     .join(',\n');
 
-    return `
-(function() {
+  const codeStr = `(function() {
   var FoovarValue = require('foovar').FoovarValue;
 
   module.exports = {
-    ${ body }
+${ body }
   };
 })();`;
 
-  })
-  .then(codeStr => fs.writeFileAsync(fullPath, codeStr, 'utf8'));
+  fs.writeFileSync(fullPath, codeStr, 'utf8');
 }
