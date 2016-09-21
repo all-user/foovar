@@ -1,2 +1,2 @@
 # foovar
-Use Stylus variables in JS.
+Refer to Stylus variables in JS.
