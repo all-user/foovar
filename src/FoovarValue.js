@@ -16,8 +16,12 @@ export default class FoovarValue {
     return fn;
   }
 
+  get isUnary() {
+    return this.stylusExpression.__type !== 'Expression' || this.stylusExpression.nodes.length === 1;
+  }
+
   get value() {
-    if (this.stylusExpression.nodes.length === 1) {
+    if (this.isUnary) {
       return resolveValue(unwrapExp(this.stylusExpression));
     } else {
       return this.stylusExpression.nodes.map(exp => new this.constructor(exp));
@@ -25,7 +29,7 @@ export default class FoovarValue {
   }
 
   get type() {
-    if (this.stylusExpression.nodes.length === 1) {
+    if (this.isUnary) {
       return resolveType(unwrapExp(this.stylusExpression));
     } else {
       return this.stylusExpression.isList ? 'list' : 'tuple';
@@ -33,7 +37,7 @@ export default class FoovarValue {
   }
 
   get css() {
-    if (this.stylusExpression.nodes.length === 1) {
+    if (this.isUnary) {
       return resolveCss(unwrapExp(this.stylusExpression));
     } else {
       return void 0;

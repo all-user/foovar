@@ -42,8 +42,20 @@ describe('export rgba var:', () => {
     assert.deepEqual(vars.varNameRgba(), [12, 34, 56, .7]);
   });
 
-  it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'rgba');
+  it('hex value: stylus node type', () => {
+    assert.equal(vars.varNameHex.type, 'rgba');
+  });
+
+  it('hex alpha value: stylus node type', () => {
+    assert.equal(vars.varNameHexAlpha.type, 'rgba');
+  });
+
+  it('rgb value: stylus node type', () => {
+    assert.equal(vars.varNameRgb.type, 'rgba');
+  });
+
+  it('rgba value: stylus node type', () => {
+    assert.equal(vars.varNameRgba.type, 'rgba');
   });
 
   it('hex value: css string', () => {
