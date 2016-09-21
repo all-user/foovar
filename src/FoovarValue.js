@@ -1,4 +1,5 @@
 import unwrapExp from './unwrapExp';
+import isUnary from './isUnary';
 import resolveValue from './resolveValue.js';
 import resolveType from './resolveType.js';
 import resolveCss from './resolveCss.js';
@@ -16,29 +17,28 @@ export default class FoovarValue {
     return fn;
   }
 
-  get isUnary() {
-    return this.stylusExpression.__type !== 'Expression' || this.stylusExpression.nodes.length === 1;
-  }
-
   get value() {
-    if (this.isUnary) {
-      return resolveValue(unwrapExp(this.stylusExpression));
+    const exp = unwrapExp(this.stylusExpression);
+    if (isUnary(exp)) {
+      return resolveValue(exp);
     } else {
-      return this.stylusExpression.nodes.map(exp => new this.constructor(exp));
+      return this.stylusExpression.nodes.map(exp => new this.constructor(unwrapExp(exp)));
     }
   }
 
   get type() {
-    if (this.isUnary) {
-      return resolveType(unwrapExp(this.stylusExpression));
+    const exp = unwrapExp(this.stylusExpression);
+    if (isUnary(exp)) {
+      return resolveType(exp);
     } else {
-      return this.stylusExpression.isList ? 'list' : 'tuple';
+      return exp.isList ? 'list' : 'tuple';
     }
   }
 
   get css() {
-    if (this.isUnary) {
-      return resolveCss(unwrapExp(this.stylusExpression));
+    const exp = unwrapExp(this.stylusExpression);
+    if (isUnary(exp)) {
+      return resolveCss(exp);
     } else {
       return void 0;
     }
