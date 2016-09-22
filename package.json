@@ -41,7 +41,8 @@
     "npm-run-all": "^3.1.0",
     "npm-run-help": "^1.1.0",
     "power-assert": "^1.4.1",
-    "rimraf": "^2.5.4"
+    "rimraf": "^2.5.4",
+    "stylus": "^0.54.5"
   },
   "peerDependencies": {
     "stylus": "^0.54.5"
