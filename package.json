@@ -2,7 +2,7 @@
   "name": "foovar",
   "version": "0.0.0",
   "description": "Use Stylus variables in JS.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "BABEL_ENV=test mocha ./test/**/*.test.js",
     "help": "npm-run-help",

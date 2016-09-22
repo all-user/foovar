@@ -18,7 +18,7 @@ describe('create js file:', () => {
       .then(() => fs.readFileAsync(SOURCE_PATH, 'utf8'))
       .then(stylusStr => {
         stylus(stylusStr)
-          .use(require(path.resolve(process.cwd(), './src/foovar.js')))
+          .use(require(path.resolve(process.cwd(), './src/index.js'))())
           .render(() => {});
       });
   });

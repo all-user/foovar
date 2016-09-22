@@ -11,7 +11,7 @@ const fs = Promise.promisifyAll(_fs);
 const OUT_PATH = path.resolve(__dirname, './vars.js');
 const SOURCE_PATH = path.resolve(__dirname, './vars.styl');
 
-describe('export hsla var:', () => {
+describe('include option:', () => {
   let vars;
   before(() => {
     return Promise
@@ -26,15 +26,9 @@ describe('export hsla var:', () => {
       });
   });
 
-  it('value', () => {
-    assert.deepEqual(vars.varName(), [12, 34, 56, .7]);
-  });
-
-  it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'hsla');
-  });
-
-  it('css string', () => {
-    assert.equal(vars.varName.css, 'hsla(12,34%,56%,0.7)');
+  it('only matched var name exists', () => {
+    assert.equal(vars.fooVarName(), 'some string');
+    assert.equal(vars.barVarName, void 0);
+    assert.equal(vars.bazVarName, void 0);
   });
 });

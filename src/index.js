@@ -2,7 +2,12 @@ import FoovarValue from './FoovarValue.js';
 
 const fn = function() {
   return function(stylus) {
-    stylus.define('foovar', require('./foovar.js'));
+    try {
+      stylus.define('foovar', require('./foovar.js'));
+    } catch (e) {
+      console.error(e);
+      throw new Error(e);
+    }
   };
 };
 

@@ -3,22 +3,22 @@ import Case from 'case';
 import path from 'path';
 import mkdirp from 'mkdirp';
 import fs from 'fs';
+import unwrapExp from './unwrapExp.js';
 
-module.exports =  function(stylus) {
-  try {
-    stylus.define('foovar', foovarFunc);
-  } catch (e) {
-    console.error(e);
-    throw new Error(e);
+module.exports = function foovarFunc(outPath, options) {
+  outPath = unwrapExp(eval(`(${ JSON.stringify(outPath) })`));
+  if (outPath.__type !== 'String') {
+    console.error('foovar outPath arg must be string');
+    return;
   }
-};
-
-function foovarFunc(outPath, options = {}) {
-  // console.log(JSON.stringify(this.global.scope.locals['var-name']));
-  outPath = outPath.string.trim();
+  outPath = outPath.val.trim();
+  options = options || new this.renderer.nodes.Object();
+  options = unwrapExp(eval(`(${ JSON.stringify(options) })`));
   const fullPath = /^\//.test(outPath) ? outPath : path.resolve(process.cwd(), outPath);
-  const incReg = options.include && new RegExp(options.include);
-  const excReg = options.exclude && new RegExp(options.exclude);
+  let incReg = options.vals.include && unwrapExp(options.vals.include);
+  let excReg = options.vals.exclude && unwrapExp(options.vals.exclude);
+  incReg = incReg && incReg.__type === 'String' && new RegExp(incReg.val);
+  excReg = excReg && excReg.__type === 'String' && new RegExp(excReg.val);
 
   mkdirp.sync(path.dirname(fullPath));
   const body = Object.entries(this.global.scope.locals)
@@ -34,7 +34,7 @@ function foovarFunc(outPath, options = {}) {
     .join(',\n');
 
   const codeStr = `(function() {
-  var FoovarValue = require(${ process.env.BABEL_ENV === 'test' ? '\'../../src/index.js\'' : '\'foovar\'' }).FoovarValue;
+  var FoovarValue = require(${ process.env.BABEL_ENV === 'test' ? `'${ path.resolve(process.cwd(), 'src/index.js') }'` : '\'foovar\'' }).FoovarValue;
 
   module.exports = {
 ${ body }
@@ -42,4 +42,5 @@ ${ body }
 })();`;
 
   fs.writeFileSync(fullPath, codeStr, 'utf8');
-}
+  console.log(`foovar: generated ${ fullPath }`);
+};

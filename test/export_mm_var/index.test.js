@@ -11,7 +11,7 @@ const fs = Promise.promisifyAll(_fs);
 const OUT_PATH = path.resolve(__dirname, './vars.js');
 const SOURCE_PATH = path.resolve(__dirname, './vars.styl');
 
-describe('export hsla var:', () => {
+describe('export mm var:', () => {
   let vars;
   before(() => {
     return Promise
@@ -27,14 +27,18 @@ describe('export hsla var:', () => {
   });
 
   it('value', () => {
-    assert.deepEqual(vars.varName(), [12, 34, 56, .7]);
+    assert.equal(vars.varName(), 1);
+  });
+
+  it('typeof', () => {
+    assert.equal(typeof vars.varName(), 'number');
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'hsla');
+    assert.equal(vars.varName.type, 'mm');
   });
 
   it('css string', () => {
-    assert.equal(vars.varName.css, 'hsla(12,34%,56%,0.7)');
+    assert.equal(vars.varName.css, '1mm');
   });
 });
