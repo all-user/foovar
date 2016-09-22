@@ -1,4 +1,5 @@
 import FoovarValue from './FoovarValue.js';
+import StylusExpression from './StylusExpression.js';
 
 const fn = function() {
   return function(stylus) {
@@ -12,5 +13,6 @@ const fn = function() {
 };
 
 fn.FoovarValue = FoovarValue;
+fn.StylusExpression = StylusExpression;
 
 module.exports = fn;
