@@ -40,9 +40,8 @@ module.exports = function foovarFunc(outPath, options) {
     .join(',\n');
 
   const codeStr = `(function() {
-  var foovar = require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/index.js') }'` : '\'foovar\'' });
-  var FoovarValue = foovar.FoovarValue;
-  var StylusExpression = foovar.StylusExpression;
+  var FoovarValue = require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/FoovarValue.js') }'` : '\'foovar/FoovarValue\'' });
+  var StylusExpression = require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/StylusExpression\'' });
 
   module.exports = {
 ${ body }

@@ -1,7 +1,7 @@
 import StylusExpression from './StylusExpression.js';
 import Case from 'case';
 
-export default class FoovarValue {
+module.exports = class FoovarValue {
   constructor(stylusExpression) {
     const fn = function() {
       return fn.value;
@@ -162,4 +162,4 @@ export default class FoovarValue {
   static resolveCubicBezireValue(exp) {
     return exp.args.nodes.map(raw => new this(new StylusExpression(raw, exp.fromJson).unwrap())());
   }
-}
+};

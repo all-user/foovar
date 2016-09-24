@@ -1,4 +1,4 @@
-export default class StylusExpression {
+module.exports = class StylusExpression {
   constructor(rawExp, fromJson) {
     this.rawExp = rawExp;
     this.fromJson = fromJson;
@@ -32,4 +32,4 @@ export default class StylusExpression {
   isUnary() {
     return this.constructorName !== 'Expression' || this.nodes.length === 1;
   }
-}
+};

@@ -1,7 +1,4 @@
-import FoovarValue from './FoovarValue.js';
-import StylusExpression from './StylusExpression.js';
-
-const fn = function() {
+module.exports = function() {
   return function(stylus) {
     try {
       stylus.define('foovar', require('./foovar.js'));
@@ -11,8 +8,3 @@ const fn = function() {
     }
   };
 };
-
-fn.FoovarValue = FoovarValue;
-fn.StylusExpression = StylusExpression;
-
-module.exports = fn;
