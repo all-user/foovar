@@ -12,7 +12,7 @@
     "clean": "rimraf lib/ && mkdir lib",
     "build": "npm-run-all -p build:*",
     "watch": "npm-run-all -p watch:*",
-    "release": "npm-run-all -s clean -p release:*",
+    "release": "BABEL_ENV=production npm-run-all -s clean -p release:*",
     "start": "npm run watch"
   },
   "repository": {
@@ -48,7 +48,6 @@
     "stylus": "^0.54.5"
   },
   "dependencies": {
-    "babel-polyfill": "^6.13.0",
     "bluebird": "^3.4.6",
     "case": "^1.4.1"
   }

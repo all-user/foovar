@@ -153,7 +153,9 @@ module.exports = class FoovarValue {
   }
 
   static resolveObjectValue(exp) {
-    return Object.entries(exp.vals).reduce((o, [k, v]) => {
+
+    return Object.keys(exp.vals).reduce((o, k) => {
+      const v = exp.vals[k];
       o[Case.camel(k)] = new this(new StylusExpression(v, exp.fromJson));
       return o;
     }, {});

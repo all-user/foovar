@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import Case from 'case';
 import path from 'path';
 import mkdirp from 'mkdirp';
@@ -27,7 +26,8 @@ module.exports = function foovarFunc(outPath, options) {
   noGeneratedLog = noGeneratedLog && noGeneratedLog.val;
 
   mkdirp.sync(path.dirname(fullPath));
-  const body = Object.entries(this.global.scope.locals)
+  const body = Object.keys(this.global.scope.locals)
+    .map(k => [k, this.global.scope.locals[k]])
     .filter(([k, v]) => {
       if (/Function/.test(v.constructor.name)) return false;
       if (incReg && !incReg.test(k)) return false;
