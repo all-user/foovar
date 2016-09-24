@@ -4,7 +4,7 @@
   "description": "Refer to Stylus variables in JS",
   "main": "lib/index.js",
   "scripts": {
-    "test": "BABEL_ENV=test mocha ./test/**/*.test.js",
+    "test": "BABEL_ENV=__foovar_internal_test__ mocha ./test/**/*.test.js",
     "help": "npm-run-help",
     "build:js": "babel src/ -d lib/",
     "watch:js": "babel -w src/ -d lib/",

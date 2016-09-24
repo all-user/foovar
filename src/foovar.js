@@ -6,7 +6,7 @@ import fs from 'fs';
 import StylusExpression from './StylusExpression.js';
 
 module.exports = function foovarFunc(outPath, options) {
-  const TEST = process.env.BABEL_ENV === 'test';
+  const TEST = process.env.BABEL_ENV === '__foovar_internal_test__';
   outPath = new StylusExpression(outPath).unwrap();
   if (outPath.constructorName !== 'String') {
     console.error('foovar outPath arg must be string');

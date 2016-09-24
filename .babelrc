@@ -4,7 +4,7 @@
     "development": {
       "presets": ["power-assert"]
     },
-    "test": {
+    "__foovar_internal_test__": {
       "presets": ["power-assert"]
     },
     "production": {
