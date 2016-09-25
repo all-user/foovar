@@ -26,15 +26,27 @@ describe('export hsla var:', () => {
       });
   });
 
-  it('value', () => {
-    assert.deepEqual(vars.varName(), [12, 34, 56, .7]);
+  it('hsl value', () => {
+    assert.deepEqual(vars.varHslName(), [12, 34, 56, 1]);
   });
 
-  it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'hsla');
+  it('hsla value', () => {
+    assert.deepEqual(vars.varHslaName(), [12, 34, 56, .7]);
   });
 
-  it('css string', () => {
-    assert.equal(vars.varName.css, 'hsla(12,34%,56%,0.7)');
+  it('hsl stylus node type', () => {
+    assert.equal(vars.varHslName.type, 'hsla');
+  });
+
+  it('hsla stylus node type', () => {
+    assert.equal(vars.varHslaName.type, 'hsla');
+  });
+
+  it('hsl css string', () => {
+    assert.equal(vars.varHslName.css, 'hsla(12,34%,56%,1)');
+  });
+
+  it('hsla css string', () => {
+    assert.equal(vars.varHslaName.css, 'hsla(12,34%,56%,0.7)');
   });
 });
