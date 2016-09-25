@@ -1,6 +1,6 @@
 {
   "name": "foovar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Refer to Stylus variables in JS",
   "main": "lib/index.js",
   "scripts": {
