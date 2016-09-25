@@ -35,6 +35,15 @@ describe('export tuple list var:', () => {
     assert.deepEqual(ret, [[1, 2, 3, 4], [5, 6, 7, 8]]);
   });
 
+  it('box-shadow value', () => {
+    const ret = vars.varBoxShadowName().map(
+      node => node().map(
+        node => node()
+      )
+    );
+    assert.deepEqual(ret, [[1, 2, 3, 4, [0,0,0,.4], 'inset'], [5, 6, 7, 8, [0,0,0,.2], 'inset']]);
+  });
+
   it('typeof', () => {
     const ret = vars.varName().map(
       node => node().map(
@@ -44,8 +53,22 @@ describe('export tuple list var:', () => {
     assert.deepEqual(ret, [['number', 'number', 'number', 'number'], ['number', 'number', 'number', 'number']]);
   });
 
+  it('box-shadow typeof', () => {
+    const ret = vars.varBoxShadowName().map(
+      node => node().map(
+        node => typeof node()
+      )
+    );
+    assert.deepEqual(ret, [['number', 'number', 'number', 'number', 'object', 'string'], ['number', 'number', 'number', 'number', 'object', 'string']]);
+  });
+
   it('stylus node type', () => {
     assert.equal(vars.varName.type, 'list');
+    assert.deepEqual(vars.varName().map(e => e.type), ['tuple', 'tuple']);
+  });
+
+  it('box-shadow stylus node type', () => {
+    assert.equal(vars.varBoxShadowName.type, 'list');
     assert.deepEqual(vars.varName().map(e => e.type), ['tuple', 'tuple']);
   });
 
@@ -58,6 +81,15 @@ describe('export tuple list var:', () => {
     assert.deepEqual(ret, [['px', 'px', 'px', 'px'], ['px', 'px', 'px', 'px']]);
   });
 
+  it('box-shadow stylus node type of values', () => {
+    const ret = vars.varBoxShadowName().map(
+      node => node().map(
+        node => node.type
+      )
+    );
+    assert.deepEqual(ret, [['px', 'px', 'px', 'px', 'rgba', 'ident'], ['px', 'px', 'px', 'px', 'rgba', 'ident']]);
+  });
+
   it('stylus css string', () => {
     const ret = vars.varName().map(
       node => node().map(
@@ -65,5 +97,14 @@ describe('export tuple list var:', () => {
       )
     );
     assert.deepEqual(ret, [['1px', '2px', '3px', '4px'], ['5px', '6px', '7px', '8px']]);
+  });
+
+  it('box-shadow stylus css string', () => {
+    const ret = vars.varBoxShadowName().map(
+      node => node().map(
+        node => node.css
+      )
+    );
+    assert.deepEqual(ret, [['1px', '2px', '3px', '4px', 'rgba(0,0,0,0.4)', 'inset'], ['5px', '6px', '7px', '8px', 'rgba(0,0,0,0.2)', 'inset']]);
   });
 });

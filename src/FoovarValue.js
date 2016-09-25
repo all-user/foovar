@@ -47,6 +47,8 @@ module.exports = class FoovarValue {
       return this.genUnitCss(exp);
     case 'String':
       return this.genStringCss(exp);
+    case 'Ident':
+      return this.genIdentCss(exp);
     case 'RGBA':
       return this.genRgbaCss(exp);
     case 'HSLA':
@@ -74,6 +76,10 @@ module.exports = class FoovarValue {
     return exp.val;
   }
 
+  static genIdentCss(exp) {
+    return exp.name;
+  }
+
   static genRgbaCss(exp) {
     if (exp.raw) {
       return exp.raw;
@@ -99,6 +105,8 @@ module.exports = class FoovarValue {
       return exp.type || void 0;
     case 'String':
       return 'string';
+    case 'Ident':
+      return 'ident';
     case 'RGBA':
       return 'rgba';
     case 'HSLA':
@@ -123,6 +131,8 @@ module.exports = class FoovarValue {
     case 'Unit':
     case 'String':
       return exp.val;
+    case 'Ident':
+      return exp.name;
     case 'RGBA':
       return this.resolveRgbaValue(exp);
     case 'HSLA':
