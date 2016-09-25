@@ -67,7 +67,7 @@ module.exports = class FoovarValue {
   }
 
   static genUnitCss(exp) {
-    return `${ exp.val }${ exp.type }`;
+    return `${ exp.val }${ exp.type || '' }`;
   }
 
   static genStringCss(exp) {
