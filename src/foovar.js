@@ -26,6 +26,19 @@ module.exports = function foovarFunc(outPath, options) {
   noGeneratedLog = noGeneratedLog && noGeneratedLog.val;
 
   mkdirp.sync(path.dirname(fullPath));
+  const ignoreKeys = [
+    'column',
+    'filename',
+    'lineno',
+    'mixin',
+    'preserve',
+    'property',
+    'quote',
+    'rest',
+  ];
+  const replacer = (k, v) => {
+    return ~ignoreKeys.indexOf(k) ? void 0 : v;
+  };
   const body = Object.keys(this.global.scope.locals)
     .map(k => [k, this.global.scope.locals[k]])
     .filter(([k, v]) => {
@@ -35,7 +48,7 @@ module.exports = function foovarFunc(outPath, options) {
       return true;
     })
     .map(([k, v]) => {
-      return `${ Case.camel(k) }: new FoovarValue(new StylusExpression(${ JSON.stringify(v, null, 2) }, true))`.replace(/^(.+)$/gm, '    $1');
+      return `${ Case.camel(k) }: new FoovarValue(new StylusExpression(${ JSON.stringify(v, replacer, 2) }, true))`.replace(/^(.+)$/gm, '    $1');
     })
     .join(',\n');
 
