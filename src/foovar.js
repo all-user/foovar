@@ -13,17 +13,12 @@ module.exports = function foovarFunc(outPath, options) {
   }
   outPath = outPath.val.trim();
   const fullPath = /^\//.test(outPath) ? outPath : path.resolve(process.cwd(), outPath);
-  options = new StylusExpression(options || new this.renderer.nodes.Object()).unwrap();
-  if (options.constructorName !== 'Object') {
-    console.error('foovar options arg must be object');
-    return;
-  }
-  let incReg = options.vals.include && new StylusExpression(options.vals.include).unwrap();
-  let excReg = options.vals.exclude && new StylusExpression(options.vals.exclude).unwrap();
-  let noGeneratedLog = options.vals.noGeneratedLog && new StylusExpression(options.vals.noGeneratedLog).unwrap();
-  incReg = incReg && incReg.constructorName === 'String' && new RegExp(incReg.val);
-  excReg = excReg && excReg.constructorName === 'String' && new RegExp(excReg.val);
-  noGeneratedLog = noGeneratedLog && noGeneratedLog.val;
+
+  let { include, exclude, noGeneratedLog, compress } = optionsResolver(options);
+  const incReg = include && include.constructorName === 'String' && new RegExp(include.val);
+  const excReg = exclude && exclude.constructorName === 'String' && new RegExp(exclude.val);
+  const noGen = noGeneratedLog && noGeneratedLog.val;
+  const comp = compress && !!compress.val;
 
   mkdirp.sync(path.dirname(fullPath));
   const ignoreKeys = [
@@ -48,19 +43,24 @@ module.exports = function foovarFunc(outPath, options) {
       return true;
     })
     .map(([k, v]) => {
-      return `${ Case.camel(k) }: new FoovarValue(new StylusExpression(${ JSON.stringify(v, replacer, 2) }, true))`.replace(/^(.+)$/gm, '    $1');
+      return `${ Case.camel(k) }: new F(new S(${ JSON.stringify(v, replacer, 0) }, true))`.replace(/^(.+)$/gm, '$1');
     })
-    .join(',\n');
+    .join(comp ? ',' : ',\n');
 
-  const codeStr = `(function() {
-  var FoovarValue = require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/FoovarValue.js') }'` : '\'foovar/lib/FoovarValue\'' });
-  var StylusExpression = require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/lib/StylusExpression\'' });
-
-  module.exports = {
-${ body }
-  };
-})();`;
+  const codeStr = `(function(){var F=require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/FoovarValue.js') }'` : '\'foovar/lib/FoovarValue\'' });var S=require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/lib/StylusExpression\'' });module.exports={${ body }};})();`;
 
   fs.writeFileSync(fullPath, codeStr, 'utf8');
-  if (!noGeneratedLog) { console.log(`foovar: generated ${ fullPath }`); }
+  if (!noGen) { console.log(`foovar: generated ${ fullPath }`); }
 };
+
+function optionsResolver(options) {
+  options = new StylusExpression(options || new this.renderer.nodes.Object()).unwrap();
+  if (options.constructorName !== 'Object') {
+    console.error('foovar options arg must be object');
+    return {};
+  }
+  return Object.keys(options.vals).reduce((unwrapped, k) => {
+    unwrapped[k] = options.vals[k] && new StylusExpression(options.vals[k]).unwrap();
+    return unwrapped;
+  }, {});
+}
