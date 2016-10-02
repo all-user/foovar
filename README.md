@@ -76,6 +76,9 @@ Export only unmatched name.
 ##### `options.noGeneratedLog: boolean`
 Don't display message to console if true.
 
+##### `options.compress: boolean`
+Compress the exporting file if true.
+
 ### Import variables
 If you export as follows,
 ```stylus
