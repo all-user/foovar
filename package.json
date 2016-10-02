@@ -1,35 +1,53 @@
 {
+  "title": "foovar",
   "name": "foovar",
+  "homepage": "https://github.com/all-user/foovar#readme",
   "version": "0.3.0",
   "description": "Refer to Stylus variables in JS",
-  "main": "lib/index.js",
-  "scripts": {
-    "test": "BABEL_ENV=__foovar_internal_test__ mocha ./test/**/*.test.js",
-    "help": "npm-run-help",
-    "build:js": "babel src/ -d lib/",
-    "watch:js": "babel -w src/ -d lib/",
-    "release:js": "NODE_ENV=production babel src/ -d lib/",
-    "clean": "rimraf lib/ && mkdir lib",
-    "build": "npm-run-all -p build:*",
-    "watch": "npm-run-all -p watch:*",
-    "release": "BABEL_ENV=production npm-run-all -s clean -p release:*",
-    "start": "npm run watch"
-  },
+  "license": "MIT",
+  "browsers": true,
+  "author": "Keita Okamoto <alluser@aaa.email.ne.jp> (http://memowomome.hatenablog.com)",
+  "maintainers": [
+    "Keita Okamoto <alluser@aaa.email.ne.jp> (http://memowomome.hatenablog.com)"
+  ],
+  "contributors": [
+    "Keita Okamoto <alluser@aaa.email.ne.jp> (http://memowomome.hatenablog.com)",
+    "KeitaO (https://github.com/KeitaO)"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/all-user/foovar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/all-user/foovar/issues"
+  },
+  "badges": {
+    "list": [
+      "npmversion",
+      "npmdownloads"
+    ]
+  },
+  "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
+  "scripts": {
+    "test": "BABEL_ENV=__foovar_internal_test__ mocha ./test/**/*.test.js",
+    "help": "npm-run-help",
+    "build:projectz": "projectz compile",
+    "release:projectz": "NODE_ENV=production npm run build:projectz",
+    "build:js": "babel src/ -d lib/",
+    "watch:js": "babel -w src/ -d lib/",
+    "release:js": "NODE_ENV=production npm run build:js",
+    "clean": "rimraf lib/ && mkdir lib",
+    "build": "npm-run-all -p build:*",
+    "watch": "npm-run-all -p watch:*",
+    "release": "NODE_ENV=production npm-run-all -s clean -p release:*",
+    "start": "npm run watch"
   },
   "keywords": [
     "stylus",
     "variable",
     "javascript"
   ],
-  "author": "Keita Okamoto",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/all-user/foovar/issues"
-  },
-  "homepage": "https://github.com/all-user/foovar#readme",
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-eslint": "^6.1.2",
@@ -41,6 +59,7 @@
     "npm-run-all": "^3.1.0",
     "npm-run-help": "^1.1.0",
     "power-assert": "^1.4.1",
+    "projectz": "^1.2.0",
     "rimraf": "^2.5.4",
     "stylus": "^0.54.5"
   },

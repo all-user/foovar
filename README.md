@@ -1,13 +1,30 @@
-# foovar
+<!-- TITLE/ -->
+
+<h1>foovar</h1>
+
+<!-- /TITLE -->
+
 
 [![CircleCI](https://circleci.com/gh/all-user/foovar/tree/master.svg?style=svg)](https://circleci.com/gh/all-user/foovar/tree/master)
+<!-- BADGES/ -->
 
-Refer to Stylus variables in JS.
+<span class="badge-npmversion"><a href="https://npmjs.org/package/foovar" title="View this project on NPM"><img src="https://img.shields.io/npm/v/foovar.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/foovar" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/foovar.svg" alt="NPM downloads" /></a></span>
+
+<!-- /BADGES -->
+
+
+<!-- DESCRIPTION/ -->
+
+Refer to Stylus variables in JS
+
+<!-- /DESCRIPTION -->
+
 
 ## Installation
 
 ```bash
-$ npm i --save-dev foovar
+$ npm i --save foovar
 ```
 
 ## Usage
@@ -15,7 +32,7 @@ $ npm i --save-dev foovar
 ### in Stylus CLI
 
 ```bash
-$ stylus -u foovar path/to/source.styl
+$ stylus -u foovar path/to/src.styl
 ```
 
 ### in webpack with stylus-loader
@@ -115,3 +132,54 @@ StyleDefinitions.bar().baz() // 1
 StyleDefinitions.bar().baz.type // 'em'
 StyleDefinitions.bar().baz.css // '1em'
 ```
+
+<!-- HISTORY/ -->
+
+<h2>History</h2>
+
+<a href="https://github.com/all-user/foovar/blob/master/HISTORY.md#files">Discover the release history by heading on over to the <code>HISTORY.md</code> file.</a>
+
+<!-- /HISTORY -->
+
+
+<!-- BACKERS/ -->
+
+<h2>Backers</h2>
+
+<h3>Maintainers</h3>
+
+These amazing people are maintaining this project:
+
+<ul><li><a href="http://memowomome.hatenablog.com">Keita Okamoto</a> — <a href="https://github.com/all-user/foovar/commits?author=all-user" title="View the GitHub contributions of Keita Okamoto on repository all-user/foovar">view contributions</a></li></ul>
+
+<h3>Sponsors</h3>
+
+No sponsors yet! Will you be the first?
+
+
+
+<h3>Contributors</h3>
+
+These amazing people have contributed code to this project:
+
+<ul><li><a href="http://memowomome.hatenablog.com">Keita Okamoto</a> — <a href="https://github.com/all-user/foovar/commits?author=all-user" title="View the GitHub contributions of Keita Okamoto on repository all-user/foovar">view contributions</a></li>
+<li><a href="https://github.com/KeitaO">KeitaO</a> — <a href="https://github.com/all-user/foovar/commits?author=KeitaO" title="View the GitHub contributions of KeitaO on repository all-user/foovar">view contributions</a></li></ul>
+
+
+
+<!-- /BACKERS -->
+
+
+<!-- LICENSE/ -->
+
+<h2>License</h2>
+
+Unless stated otherwise all works are:
+
+<ul><li>Copyright &copy; <a href="http://memowomome.hatenablog.com">Keita Okamoto</a></li></ul>
+
+and licensed under:
+
+<ul><li><a href="http://spdx.org/licenses/MIT.html">MIT License</a></li></ul>
+
+<!-- /LICENSE -->
