@@ -47,7 +47,7 @@ module.exports = function foovarFunc(outPath, options) {
     })
     .join(comp ? ',' : ',\n');
 
-  const codeStr = `(function(){var F=require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/FoovarValue.js') }'` : '\'foovar/lib/FoovarValue\'' });var S=require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/lib/StylusExpression\'' });module.exports={${ body }};})();`;
+  const codeStr = `(function(){var F=require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/FoovarValue.js') }'` : '\'foovar/lib/FoovarValue\'' });var S=require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/lib/StylusExpression\'' });module.exports={${ comp ? '' : '\n' }${ body }};})();`;
 
   fs.writeFileSync(fullPath, codeStr, 'utf8');
   if (!noGen) { console.log(`foovar: generated ${ fullPath }`); }
