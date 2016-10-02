@@ -1,5 +1,8 @@
 # History
 
+## v0.3.2 October 3, 2016
+- Updated dependencies
+
 ## v0.3.1 October 2, 2016
 - Generate default file with compressed as human readable
 - Add option for more compression
