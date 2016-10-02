@@ -2,7 +2,7 @@
   "title": "foovar",
   "name": "foovar",
   "homepage": "https://github.com/all-user/foovar#readme",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Refer to Stylus variables in JS",
   "license": "MIT",
   "browsers": true,
