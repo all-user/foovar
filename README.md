@@ -43,7 +43,7 @@ bar = 'some text'
 foovar('src/StyleDefinitions.js')
 ```
 
-Path resolving is absolute path if path start with `/`. Otherwise relative from `process.cwd()`.
+Path resolving is absolute if start with `/`. Otherwise relative from `process.cwd()`.
 
 ##### `options.include: string`
 Export only matched name.
