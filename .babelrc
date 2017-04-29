@@ -1,14 +1,69 @@
 {
-  "presets": ["latest"],
+  "presets": [
+    [
+      "env",
+      {
+        "targets" : {
+          "browsers": [
+            "last 2 versions",
+            "ie >= 11"
+          ]
+        },
+        "useBuiltIns": true
+      }
+    ]
+  ],
   "env": {
     "development": {
-      "presets": ["power-assert"]
+      "presets": [
+        [
+          "env",
+          {
+            "targets" : {
+              "browsers": [
+                "last 2 versions",
+                "ie >= 11"
+              ]
+            },
+            "useBuiltIns": true
+          }
+        ],
+        "power-assert"
+      ]
     },
     "__foovar_internal_test__": {
-      "presets": ["power-assert"]
+      "presets": [
+        [
+          "env",
+          {
+            "targets" : {
+              "browsers": [
+                "last 2 versions",
+                "ie >= 11"
+              ]
+            },
+            "useBuiltIns": true
+          }
+        ],
+        "power-assert"
+      ]
     },
     "production": {
-      "plugins": ["unassert"]
-    }
+      "presets": [
+        [
+          "env",
+          {
+            "targets" : {
+              "browsers": [
+                "last 2 versions",
+                "ie >= 11"
+              ]
+            },
+            "useBuiltIns": true
+          }
+        ],
+        "unassert"
+      ]
+    },
   }
 }
