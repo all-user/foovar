@@ -38,9 +38,9 @@
     "watch:js": "babel -w src/ -d lib/",
     "release:js": "NODE_ENV=production npm run build:js",
     "clean": "rimraf lib/ && mkdir lib",
-    "build": "npm-run-all -p build:*",
-    "watch": "npm-run-all -p watch:*",
-    "release": "NODE_ENV=production npm-run-all -s clean -p release:*",
+    "build": "run-p build:*",
+    "watch": "run-p watch:*",
+    "release": "NODE_ENV=production run-s clean -p release:*",
     "start": "npm run watch"
   },
   "keywords": [
@@ -49,18 +49,18 @@
     "javascript"
   ],
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-eslint": "^7.1.1",
-    "babel-plugin-unassert": "^2.1.1",
-    "babel-preset-latest": "^6.16.0",
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-unassert": "^2.1.2",
+    "babel-preset-env": "^1.4.0",
     "babel-preset-power-assert": "^1.0.0",
-    "eslint": "^3.10.2",
-    "mocha": "^3.1.2",
-    "npm-run-all": "^3.1.1",
+    "eslint": "^3.19.0",
+    "mocha": "^3.3.0",
+    "npm-run-all": "^4.0.2",
     "npm-run-help": "^1.1.0",
     "power-assert": "^1.4.2",
     "projectz": "^1.3.2",
-    "rimraf": "^2.5.4",
+    "rimraf": "^2.6.1",
     "stylus": "^0.54.5"
   },
   "peerDependencies": {
