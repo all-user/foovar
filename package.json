@@ -30,7 +30,7 @@
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
-    "test": "BABEL_ENV=__foovar_internal_test__ mocha ./test/**/*.test.js",
+    "test": "BABEL_ENV=__foovar_internal_test__ mocha -R spec ./test/**/*.test.js",
     "help": "npm-run-help",
     "build:projectz": "projectz compile",
     "release:projectz": "NODE_ENV=production npm run build:projectz",
