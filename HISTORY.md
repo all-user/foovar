@@ -1,5 +1,12 @@
 # History
 
+## v0.4.1 April 30, 2017
+- Add `plainObject` option to `foovar` function in stylus
+- Update documents
+
+## v0.4.0 April 30, 2017
+- Add utility function to convert to plain object
+
 ## v0.3.2 October 3, 2016
 - Updated dependencies
 
