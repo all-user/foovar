@@ -14,11 +14,24 @@ module.exports = function foovarFunc(outPath, options) {
   outPath = outPath.val.trim();
   const fullPath = /^\//.test(outPath) ? outPath : path.resolve(process.cwd(), outPath);
 
-  let { include, exclude, noGeneratedLog, compress } = optionsResolver(options);
+  let { include, exclude, noGeneratedLog, compress, plainObject } = optionsResolver(options);
   const incReg = include && include.constructorName === 'String' && new RegExp(include.val);
   const excReg = exclude && exclude.constructorName === 'String' && new RegExp(exclude.val);
   const noGen = noGeneratedLog && noGeneratedLog.val;
   const comp = compress && !!compress.val;
+  let plain;
+  switch (plainObject) {
+  case 'css':
+  case 'type':
+    plain = `'${ plainObject }'`;
+    break;
+  default:
+    if (plainObject == null) {
+      plain = false;
+    } else {
+      plain = "'value'";
+    }
+  }
 
   mkdirp.sync(path.dirname(fullPath));
   const ignoreKeys = [
@@ -43,13 +56,19 @@ module.exports = function foovarFunc(outPath, options) {
       return true;
     })
     .map(([k, v]) => {
-      return `${ Case.camel(k) }: new F(new S(${ JSON.stringify(v, replacer, 0) }, true))`.replace(/^(.+)$/gm, '$1');
+      let foovarValueStr = `new F(new S(${ JSON.stringify(v, replacer, 0) },true))`;
+      if (plain) {
+        foovarValueStr = `p(${ foovarValueStr },{options:${ plain }})`;
+      }
+      return `${ Case.camel(k) }:${ foovarValueStr.replace(/^(.+)$/gm , '$1')}`;
     })
     .join(comp ? ',' : ',\n');
 
   const requirePathForFoovarValue = TEST ? `'${ path.resolve(process.cwd(), 'src/FoovarValue.js') }'` : '\'foovar/lib/FoovarValue\'';
   const requirePathForStylusExpression = TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/lib/StylusExpression\'';
-  const codeStr = `(function(){var F=require(${requirePathForFoovarValue});var S=require(${requirePathForStylusExpression});module.exports={${ comp ? '' : '\n' }${ body }};})();`;
+  const requirePathForConvertToPlainObject = TEST ? `'${ path.resolve(process.cwd(), 'src/convertToPlainObject.js') }'` : '\'foovar/lib/convertToPlainObject\'';
+  const requireConvertToPlainObject = plain ? `var p=require(${requirePathForConvertToPlainObject});` : '';
+  const codeStr = `(function(){var F=require(${requirePathForFoovarValue});var S=require(${requirePathForStylusExpression});${ requireConvertToPlainObject }module.exports={${ comp ? '' : '\n' }${ body }};})();`;
 
   fs.writeFileSync(fullPath, codeStr, 'utf8');
   if (!noGen) { console.log(`foovar: generated ${ fullPath }`); }

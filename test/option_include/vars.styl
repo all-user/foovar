@@ -1,8 +1,7 @@
 foo-var-name = 'some string'
 bar-var-name = 'some string'
 baz-var-name = 'some string'
-
-foovar('test/exclude_option/vars.js', {
+foovar('test/option_include/vars.js', {
   noGeneratedLog: true,
-  exclude: '^bar|^baz'
+  include: '^foo'
 })
