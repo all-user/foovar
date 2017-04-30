@@ -40,7 +40,7 @@
     "clean": "rimraf lib/ && mkdir lib",
     "build": "run-p build:*",
     "watch": "run-p watch:*",
-    "release": "NODE_ENV=production run-s clean -p release:*",
+    "release": "NODE_ENV=production npm-run-all -s clean -p release:*",
     "start": "npm run watch"
   },
   "keywords": [
