@@ -61,7 +61,9 @@
             },
             "useBuiltIns": true
           }
-        ],
+        ]
+      ],
+      "plugins": [
         "unassert"
       ]
     },
