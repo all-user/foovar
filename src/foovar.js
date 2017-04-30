@@ -37,7 +37,7 @@ module.exports = function foovarFunc(outPath, options) {
   const body = Object.keys(this.global.scope.locals)
     .map(k => [k, this.global.scope.locals[k]])
     .filter(([k, v]) => {
-      if (/Function/.test(v.constructor.name)) return false;
+      if (v instanceof Function) return false;
       if (incReg && !incReg.test(k)) return false;
       if (excReg && excReg.test(k)) return false;
       return true;
@@ -47,7 +47,9 @@ module.exports = function foovarFunc(outPath, options) {
     })
     .join(comp ? ',' : ',\n');
 
-  const codeStr = `(function(){var F=require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/FoovarValue.js') }'` : '\'foovar/lib/FoovarValue\'' });var S=require(${ TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/lib/StylusExpression\'' });module.exports={${ comp ? '' : '\n' }${ body }};})();`;
+  const requirePathForFoovarValue = TEST ? `'${ path.resolve(process.cwd(), 'src/FoovarValue.js') }'` : '\'foovar/lib/FoovarValue\'';
+  const requirePathForStylusExpression = TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/lib/StylusExpression\'';
+  const codeStr = `(function(){var F=require(${requirePathForFoovarValue});var S=require(${requirePathForStylusExpression});module.exports={${ comp ? '' : '\n' }${ body }};})();`;
 
   fs.writeFileSync(fullPath, codeStr, 'utf8');
   if (!noGen) { console.log(`foovar: generated ${ fullPath }`); }

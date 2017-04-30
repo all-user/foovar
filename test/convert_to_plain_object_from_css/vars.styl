@@ -1,0 +1,40 @@
+list1 = 1px, 2px, 3px, 4px
+list2 = 5px, 6px, 7px, 8px
+tuple-list = (1px 2px 3px 4px), (5px 6px 7px 8px)
+lists = list1, list2
+obj = {
+  var-number: 123,
+  var-string: 'some text',
+  var-ident: auto,
+  var-unit: 456px,
+  var-rgba: rgba(11,22,33,.4),
+  var-list: list1,
+  var-tuple: 1px 2px 3px 4px,
+  var-tuple-list: tuple-list,
+  var-list-tuple: list1 list2,
+  var-tuples: (1px 2px 3px 4px) (5px 6px 7px 8px),
+  var-lists: lists
+}
+obj-tuple = obj obj
+obj-list= obj, obj
+
+var-obj = {
+  var-number: 123,
+  var-string: 'some text',
+  var-ident: auto,
+  var-unit: 456px,
+  var-rgba: rgba(11,22,33,.4),
+  var-list: list1,
+  var-tuple: 1px 2px 3px 4px,
+  var-tuple-list: tuple-list,
+  var-list-tuple: list1 list2,
+  var-tuples: (1px 2px 3px 4px) (5px 6px 7px 8px),
+  var-lists: lists
+  var-nested-obj: obj,
+  var-obj-tuple: obj-tuple,
+  var-obj-list: obj-list
+}
+
+foovar('test/convert_to_plain_object_from_css/vars.js', {
+  noGeneratedLog: true
+})
