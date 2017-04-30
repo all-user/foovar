@@ -79,6 +79,9 @@ Don't display message to console if true.
 ##### `options.compress: boolean`
 Compress the exporting file if true.
 
+##### `options.plainObject: boolean | 'value' | 'css' | 'type'`
+Export plain object. (but not object literal)
+
 ### Import variables
 If you export as follows,
 ```stylus
@@ -135,6 +138,58 @@ StyleDefinitions.bar().baz() // 1
 StyleDefinitions.bar().baz.type // 'em'
 StyleDefinitions.bar().baz.css // '1em'
 ```
+
+### Convert to plain object
+
+```stylus
+foo = 10px 20px 30px 40px
+bar = { baz: 1em }
+
+foovar('src/StyleDefinitions.js')
+```
+
+You can use `foovar.convertToPlainObject` method as following.
+
+```javascript
+const StyleDefinitions = require('./src/StyleDefinitions.js');
+const { convertToPlainObject } = require('foovar');
+
+const obj = convertToPlainObject(StyleDefinitions);
+
+// {
+//   foo: [10, 20, 30, 40],
+//   bar: {
+//     baz: 1
+//   }
+// }
+```
+
+#### `options.from: 'value' | 'css' | 'type'`
+
+Default is `'value'`, other options are `'css'` and `'type'`.
+
+```javascript
+const obj = convertToPlainObject(StyleDefinitions, { from: 'css' });
+
+// {
+//   foo: ['10px', '20px', '30px', '40px'],
+//   bar: {
+//     baz: '1em'
+//   }
+// }
+```
+
+```javascript
+const obj = convertToPlainObject(StyleDefinitions, { from: 'type' });
+
+// {
+//   foo: ['px', 'px', 'px', 'px'],
+//   bar: {
+//     baz: 'em'
+//   }
+// }
+```
+
 
 <!-- HISTORY/ -->
 

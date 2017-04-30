@@ -113,6 +113,8 @@ module.exports = class FoovarValue {
       return 'hsla';
     case 'Object':
       return 'hash';
+    case 'Function':
+      return 'function';
     case 'Call':
       switch (exp.name) {
       case 'cubic-bezier':
@@ -130,6 +132,7 @@ module.exports = class FoovarValue {
     switch (exp.constructorName) {
     case 'Unit':
     case 'String':
+    case 'Function':
       return exp.val;
     case 'Ident':
       return exp.name;
@@ -147,6 +150,7 @@ module.exports = class FoovarValue {
         console.error(`Can't resolve value: stylus.nodes.Call ${ this.name }`);
         return;
       }
+
     default:
       console.error(`Can't resolve value: ${ exp.constructorName }`);
     }
