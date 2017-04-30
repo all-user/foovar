@@ -10,6 +10,8 @@ function convertToPlainObject(foovarValue, options) {
     return convertToPlainObjectFromValue(foovarValue);
   case 'css':
     return convertToPlainObjectFromCss(foovarValue);
+  case 'type':
+    return convertToPlainObjectFromType(foovarValue);
   }
 }
 
@@ -51,6 +53,32 @@ function convertToPlainObjectFromCss(foovarValue) {
       return Object.keys(foovarValue)
       .reduce((acc, k) => {
         acc[k] = convertToPlainObjectFromCss(foovarValue[k]);
+        return acc;
+      }, {});
+    }
+  }
+}
+
+function convertToPlainObjectFromType(foovarValue) {
+  if (foovarValue instanceof FoovarValue) {
+    const foovarType = foovarValue.type;
+    foovarValue = foovarValue();
+    if (foovarValue == null) {
+      return foovarValue;
+    } else if (foovarType === 'tuple' || foovarType === 'list' || foovarType === 'hash') {
+      return convertToPlainObjectFromType(foovarValue);
+    } else {
+      return foovarType;
+    }
+  } else {
+    if (foovarValue == null || typeof foovarValue === 'string' || typeof foovarValue === 'number') {
+      return foovarValue;
+    } else if (Array.isArray(foovarValue)) {
+      return foovarValue.map(convertToPlainObjectFromType);
+    } else {
+      return Object.keys(foovarValue)
+      .reduce((acc, k) => {
+        acc[k] = convertToPlainObjectFromType(foovarValue[k]);
         return acc;
       }, {});
     }
