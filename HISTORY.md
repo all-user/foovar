@@ -1,5 +1,8 @@
 # History
 
+## v0.4.2 May 1, 2017
+- Fix up.
+
 ## v0.4.1 April 30, 2017
 - Add `plainObject` option to `foovar` function in stylus
 - Update documents
