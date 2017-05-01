@@ -4,7 +4,7 @@ import Promise from 'bluebird';
 import path from 'path';
 import _fs from 'fs';
 import _rimraf from 'rimraf';
-import { convertToPlainObject } from '../../src/index.js';
+import convertToPlainObject from '../../src/convertToPlainObject.js';
 
 const rimraf = Promise.promisify(_rimraf);
 const fs = Promise.promisifyAll(_fs);

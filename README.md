@@ -152,7 +152,7 @@ You can use `foovar.convertToPlainObject` method as following.
 
 ```javascript
 const StyleDefinitions = require('./src/StyleDefinitions.js');
-const { convertToPlainObject } = require('foovar');
+const convertToPlainObject = require('foovar/lib/convertToPlainObject');
 
 const obj = convertToPlainObject(StyleDefinitions);
 

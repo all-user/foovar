@@ -4,6 +4,4 @@ const foovarExports = function() {
   };
 };
 
-foovarExports.convertToPlainObject = require('./convertToPlainObject.js');
-
 module.exports = foovarExports;
