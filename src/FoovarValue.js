@@ -11,6 +11,9 @@ module.exports = class FoovarValue {
     const foovarProto = Object.getPrototypeOf(this);
     Object.setPrototypeOf(foovarProto, Object.getPrototypeOf(fn));
     Object.setPrototypeOf(fn, foovarProto);
+    Object.defineProperty(fn, '__is_foovarValue', {
+      value: true
+    });
     return fn;
   }
 

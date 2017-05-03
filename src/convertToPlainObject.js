@@ -16,7 +16,7 @@ function convertToPlainObject(foovarValue, options) {
 }
 
 function convertToPlainObjectFromValue(foovarValue) {
-  if (foovarValue instanceof FoovarValue) {
+  if (foovarValue.__is_foovarValue) {
     foovarValue = foovarValue();
   }
   if (foovarValue == null || typeof foovarValue === 'string' || typeof foovarValue === 'number') {
