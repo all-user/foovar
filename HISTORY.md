@@ -1,5 +1,8 @@
 # History
 
+## v0.4.4 May 3, 2017
+- Fix up
+
 ## v0.4.3 May 3, 2017
 - Change implements to judge that is foovarValue instance
 
