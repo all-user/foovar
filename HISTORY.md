@@ -1,5 +1,8 @@
 # History
 
+## v0.5.0 May 22, 2017
+- Add `propertyCase` option
+
 ## v0.4.4 May 3, 2017
 - Fix up
 
