@@ -1,8 +1,8 @@
-import Case from 'case';
 import path from 'path';
 import mkdirp from 'mkdirp';
 import fs from 'fs';
 import StylusExpression from './StylusExpression.js';
+import FoovarValue from './FoovarValue.js';
 
 module.exports = function foovarFunc(outPath, options) {
   const TEST = process.env.BABEL_ENV === '__foovar_internal_test__';
@@ -14,21 +14,24 @@ module.exports = function foovarFunc(outPath, options) {
   outPath = outPath.val.trim();
   const fullPath = /^\//.test(outPath) ? outPath : path.resolve(process.cwd(), outPath);
 
-  let { include, exclude, noGeneratedLog, compress, plainObject } = optionsResolver(options);
+  let { include, exclude, noGeneratedLog, compress, plainObject, propertyCase } = optionsResolver(options);
   const incReg = include && include.constructorName === 'String' && new RegExp(include.val);
   const excReg = exclude && exclude.constructorName === 'String' && new RegExp(exclude.val);
   const noGen = noGeneratedLog && noGeneratedLog.val;
   const comp = compress && !!compress.val;
+  FoovarValue.case = propertyCase && propertyCase.val;
+  const FoovarValueCase = FoovarValue.case && `'${ FoovarValue.case }'`;
+
   let plain;
-  switch (plainObject) {
-  case 'css':
-  case 'type':
-    plain = `'${ plainObject }'`;
-    break;
-  default:
-    if (plainObject == null) {
-      plain = false;
-    } else {
+  if (plainObject == null || plainObject.val == null) {
+    plain = false;
+  } else {
+    switch (plainObject.val) {
+    case 'css':
+    case 'type':
+      plain = `'${ plainObject.val }'`;
+      break;
+    default:
       plain = "'value'";
     }
   }
@@ -56,11 +59,11 @@ module.exports = function foovarFunc(outPath, options) {
       return true;
     })
     .map(([k, v]) => {
-      let foovarValueStr = `new F(new S(${ JSON.stringify(v, replacer, 0) },true))`;
+      let foovarValueStr = `new F(new S(${ JSON.stringify(v, replacer, 0) },true),{case:${ FoovarValueCase }})`;
       if (plain) {
-        foovarValueStr = `p(${ foovarValueStr },{options:${ plain }})`;
+        foovarValueStr = `p(${ foovarValueStr },{from:${ plain }})`;
       }
-      return `${ Case.camel(k) }:${ foovarValueStr.replace(/^(.+)$/gm , '$1')}`;
+      return `'${ FoovarValue.resolvePropertyKey(k) }':${ foovarValueStr.replace(/^(.+)$/gm , '$1')}`;
     })
     .join(comp ? ',' : ',\n');
 
@@ -68,7 +71,8 @@ module.exports = function foovarFunc(outPath, options) {
   const requirePathForStylusExpression = TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/lib/StylusExpression\'';
   const requirePathForConvertToPlainObject = TEST ? `'${ path.resolve(process.cwd(), 'src/convertToPlainObject.js') }'` : '\'foovar/lib/convertToPlainObject\'';
   const requireConvertToPlainObject = plain ? `var p=require(${requirePathForConvertToPlainObject});` : '';
-  const codeStr = `(function(){var F=require(${requirePathForFoovarValue});var S=require(${requirePathForStylusExpression});${ requireConvertToPlainObject }module.exports={${ comp ? '' : '\n' }${ body }};})();`;
+  const setPropertyCase = FoovarValueCase ? `F.case=${FoovarValueCase};` : '';
+  const codeStr = `(function(){var F=require(${requirePathForFoovarValue});${setPropertyCase}var S=require(${requirePathForStylusExpression});${requireConvertToPlainObject}module.exports={${ comp ? '' : '\n' }${ body }};})();`;
 
   fs.writeFileSync(fullPath, codeStr, 'utf8');
   if (!noGen) { console.log(`foovar: generated ${ fullPath }`); }

@@ -173,12 +173,20 @@ module.exports = class FoovarValue {
 
     return Object.keys(exp.vals).reduce((o, k) => {
       const v = exp.vals[k];
-      o[Case.camel(k)] = new this(new StylusExpression(v, exp.fromJson));
+      o[this.resolvePropertyKey(k)] = new this(new StylusExpression(v, exp.fromJson));
       return o;
     }, {});
   }
 
   static resolveCubicBezireValue(exp) {
     return exp.args.nodes.map(raw => new this(new StylusExpression(raw, exp.fromJson).unwrap())());
+  }
+
+  static resolvePropertyKey(k) {
+    if (this.case === 'raw') {
+      return k;
+    } else {
+      return Case[this.case || 'camel'](k);
+    }
   }
 };
