@@ -82,6 +82,11 @@ Compress the exporting file if true.
 ##### `options.plainObject: boolean | 'value' | 'css' | 'type'`
 Export plain object. (but not object literal)
 
+##### `options.propertyCase: 'raw' | 'camel' | 'pascal' | kebab | 'snake' | 'header' | 'constant'`
+Set case of property name. Default value is `camel` case.
+
+When you set `raw`, foovar does not change property name.
+
 ### Import variables
 If you export as follows,
 ```stylus
