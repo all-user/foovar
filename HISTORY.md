@@ -1,5 +1,8 @@
 # History
 
+## v0.5.1 May 24, 2017
+- Fix up, default value is affected after set `propertyCase` option.
+
 ## v0.5.0 May 22, 2017
 - Add `propertyCase` option
 
