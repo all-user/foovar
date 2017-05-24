@@ -71,7 +71,7 @@ module.exports = function foovarFunc(outPath, options) {
   const requirePathForStylusExpression = TEST ? `'${ path.resolve(process.cwd(), 'src/StylusExpression.js') }'` : '\'foovar/lib/StylusExpression\'';
   const requirePathForConvertToPlainObject = TEST ? `'${ path.resolve(process.cwd(), 'src/convertToPlainObject.js') }'` : '\'foovar/lib/convertToPlainObject\'';
   const requireConvertToPlainObject = plain ? `var p=require(${requirePathForConvertToPlainObject});` : '';
-  const setPropertyCase = FoovarValueCase ? `F.case=${FoovarValueCase};` : '';
+  const setPropertyCase = `F.case=${FoovarValueCase || null};`;
   const codeStr = `(function(){var F=require(${requirePathForFoovarValue});${setPropertyCase}var S=require(${requirePathForStylusExpression});${requireConvertToPlainObject}module.exports={${ comp ? '' : '\n' }${ body }};})();`;
 
   fs.writeFileSync(fullPath, codeStr, 'utf8');

@@ -71,4 +71,10 @@ describe('propertyCase option:', () => {
     assert(vars['VAR_NAME']()['HASH_VAR_NAME']);
     assert.strictEqual(vars['VAR_NAME']()['HASH_VAR_NAME'](), 10);
   });
+  it('default', () => {
+    const vars = require(path.resolve(__dirname, './vars_default.js'));
+    assert(vars['varName']);
+    assert(vars['varName']()['hashVarName']);
+    assert.strictEqual(vars['varName']()['hashVarName'](), 10);
+  });
 });
