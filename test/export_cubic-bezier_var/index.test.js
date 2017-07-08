@@ -35,18 +35,18 @@ describe('export cubic-bezier var:', () => {
   });
 
   it('positive value: stylus node type', () => {
-    assert.equal(vars.varNamePosi.type, 'cubic-bezier');
+    assert.strictEqual(vars.varNamePosi.type, 'cubic-bezier');
   });
 
   it('negative value: stylus node type', () => {
-    assert.equal(vars.varNameNega.type, 'cubic-bezier');
+    assert.strictEqual(vars.varNameNega.type, 'cubic-bezier');
   });
 
   it('positive value: stylus css string', () => {
-    assert.equal(vars.varNamePosi.css, 'cubic-bezier(1,0,1,0)');
+    assert.strictEqual(vars.varNamePosi.css, 'cubic-bezier(1,0,1,0)');
   });
 
   it('negative value: stylus css string', () => {
-    assert.equal(vars.varNameNega.css, 'cubic-bezier(-1,0,-1,0)');
+    assert.strictEqual(vars.varNameNega.css, 'cubic-bezier(-1,0,-1,0)');
   });
 });

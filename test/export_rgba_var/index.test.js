@@ -43,34 +43,34 @@ describe('export rgba var:', () => {
   });
 
   it('hex value: stylus node type', () => {
-    assert.equal(vars.varNameHex.type, 'rgba');
+    assert.strictEqual(vars.varNameHex.type, 'rgba');
   });
 
   it('hex alpha value: stylus node type', () => {
-    assert.equal(vars.varNameHexAlpha.type, 'rgba');
+    assert.strictEqual(vars.varNameHexAlpha.type, 'rgba');
   });
 
   it('rgb value: stylus node type', () => {
-    assert.equal(vars.varNameRgb.type, 'rgba');
+    assert.strictEqual(vars.varNameRgb.type, 'rgba');
   });
 
   it('rgba value: stylus node type', () => {
-    assert.equal(vars.varNameRgba.type, 'rgba');
+    assert.strictEqual(vars.varNameRgba.type, 'rgba');
   });
 
   it('hex value: css string', () => {
-    assert.equal(vars.varNameHex.css, '#112233');
+    assert.strictEqual(vars.varNameHex.css, '#112233');
   });
 
   it('hex alpha value: css string', () => {
-    assert.equal(vars.varNameHexAlpha.css, '#11223344');
+    assert.strictEqual(vars.varNameHexAlpha.css, '#11223344');
   });
 
   it('rgb value: css string', () => {
-    assert.equal(vars.varNameRgb.css, 'rgba(12,34,56,1)');
+    assert.strictEqual(vars.varNameRgb.css, 'rgba(12,34,56,1)');
   });
 
   it('rgba value: css string', () => {
-    assert.equal(vars.varNameRgba.css, 'rgba(12,34,56,0.7)');
+    assert.strictEqual(vars.varNameRgba.css, 'rgba(12,34,56,0.7)');
   });
 });

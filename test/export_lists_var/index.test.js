@@ -45,7 +45,7 @@ describe('export lists var:', () => {
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'list');
+    assert.strictEqual(vars.varName.type, 'list');
     assert.deepEqual(vars.varName().map(e => e.type), ['list', 'list']);
   });
 

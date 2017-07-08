@@ -27,8 +27,8 @@ describe('include option:', () => {
   });
 
   it('only matched var name exists', () => {
-    assert.equal(vars.fooVarName(), 'some string');
-    assert.equal(vars.barVarName, void 0);
-    assert.equal(vars.bazVarName, void 0);
+    assert.strictEqual(vars.fooVarName(), 'some string');
+    assert.strictEqual(vars.barVarName, void 0);
+    assert.strictEqual(vars.bazVarName, void 0);
   });
 });

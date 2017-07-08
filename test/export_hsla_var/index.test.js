@@ -35,18 +35,18 @@ describe('export hsla var:', () => {
   });
 
   it('hsl stylus node type', () => {
-    assert.equal(vars.varHslName.type, 'hsla');
+    assert.strictEqual(vars.varHslName.type, 'hsla');
   });
 
   it('hsla stylus node type', () => {
-    assert.equal(vars.varHslaName.type, 'hsla');
+    assert.strictEqual(vars.varHslaName.type, 'hsla');
   });
 
   it('hsl css string', () => {
-    assert.equal(vars.varHslName.css, 'hsla(12,34%,56%,1)');
+    assert.strictEqual(vars.varHslName.css, 'hsla(12,34%,56%,1)');
   });
 
   it('hsla css string', () => {
-    assert.equal(vars.varHslaName.css, 'hsla(12,34%,56%,0.7)');
+    assert.strictEqual(vars.varHslaName.css, 'hsla(12,34%,56%,0.7)');
   });
 });

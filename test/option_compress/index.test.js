@@ -26,7 +26,7 @@ describe('compress option:', () => {
   it('compressed', () => {
     return fs.readFileAsync(path.resolve(__dirname, './vars.js'), 'utf8')
       .then(data => {
-        assert.equal(/,\n/.test(data), false);
+        assert.strictEqual(/,\n/.test(data), false);
       })
       .catch(err => {
         throw new Error(err);
