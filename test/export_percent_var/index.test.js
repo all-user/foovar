@@ -27,18 +27,18 @@ describe('export percent var:', () => {
   });
 
   it('value', () => {
-    assert.equal(vars.varName(), 50);
+    assert.strictEqual(vars.varName(), 50);
   });
 
   it('typeof', () => {
-    assert.equal(typeof vars.varName(), 'number');
+    assert.strictEqual(typeof vars.varName(), 'number');
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, '%');
+    assert.strictEqual(vars.varName.type, '%');
   });
 
   it('css string', () => {
-    assert.equal(vars.varName.css, '50%');
+    assert.strictEqual(vars.varName.css, '50%');
   });
 });

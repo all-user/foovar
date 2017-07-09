@@ -63,12 +63,12 @@ describe('export tuple list var:', () => {
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'list');
+    assert.strictEqual(vars.varName.type, 'list');
     assert.deepEqual(vars.varName().map(e => e.type), ['tuple', 'tuple']);
   });
 
   it('box-shadow stylus node type', () => {
-    assert.equal(vars.varBoxShadowName.type, 'list');
+    assert.strictEqual(vars.varBoxShadowName.type, 'list');
     assert.deepEqual(vars.varName().map(e => e.type), ['tuple', 'tuple']);
   });
 

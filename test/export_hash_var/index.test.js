@@ -27,30 +27,31 @@ describe('export hash var:', () => {
   });
 
   it('outer value', () => {
-    assert.equal(vars.varName().stringVar(), 'outer');
+    assert.strictEqual(vars.varName().stringVar(), 'outer');
   });
 
   it('inner value', () => {
-    assert.equal(vars.varName().nested().stringVar(), 'inner');
+    assert.strictEqual(vars.varName().nested().stringVar(), 'inner');
   });
 
   it('typeof values', () => {
-    assert.equal(typeof vars.varName().stringVar(), 'string');
-    assert.equal(typeof vars.varName().nested().stringVar(), 'string');
+    assert.strictEqual(typeof vars.varName().stringVar(), 'string');
+    assert.strictEqual(typeof vars.varName().nested().stringVar(), 'string');
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'hash');
-    assert.equal(vars.varName().nested.type, 'hash');
+    assert.strictEqual(vars.varName.type, 'hash');
+    assert.strictEqual(vars.varName().nested.type, 'hash');
   });
 
   it('stylus node type of values', () => {
-    assert.equal(vars.varName().stringVar.type, 'string');
-    assert.equal(vars.varName().nested().stringVar.type, 'string');
+    assert.strictEqual(vars.varName().stringVar.type, 'string');
+    assert.strictEqual(vars.varName().nested().stringVar.type, 'string');
   });
 
   it('stylus css string', () => {
-    assert.equal(vars.varName().stringVar.css, 'outer');
-    assert.equal(vars.varName().nested().stringVar.css, 'inner');
+    assert.strictEqual(vars.varName.css, void 0);
+    assert.strictEqual(vars.varName().stringVar.css, 'outer');
+    assert.strictEqual(vars.varName().nested().stringVar.css, 'inner');
   });
 });

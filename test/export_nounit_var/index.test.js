@@ -27,18 +27,18 @@ describe('export nounit var:', () => {
   });
 
   it('value', () => {
-    assert.equal(vars.varName(), 20);
+    assert.strictEqual(vars.varName(), 20);
   });
 
   it('typeof', () => {
-    assert.equal(typeof vars.varName(), 'number');
+    assert.strictEqual(typeof vars.varName(), 'number');
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, void 0);
+    assert.strictEqual(vars.varName.type, void 0);
   });
 
   it('css string', () => {
-    assert.equal(vars.varName.css, '20');
+    assert.strictEqual(vars.varName.css, '20');
   });
 });

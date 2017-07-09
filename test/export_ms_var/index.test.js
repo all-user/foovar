@@ -27,18 +27,18 @@ describe('export ms var:', () => {
   });
 
   it('value', () => {
-    assert.equal(vars.varName(), 1);
+    assert.strictEqual(vars.varName(), 1);
   });
 
   it('typeof', () => {
-    assert.equal(typeof vars.varName(), 'number');
+    assert.strictEqual(typeof vars.varName(), 'number');
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'ms');
+    assert.strictEqual(vars.varName.type, 'ms');
   });
 
   it('css string', () => {
-    assert.equal(vars.varName.css, '1ms');
+    assert.strictEqual(vars.varName.css, '1ms');
   });
 });

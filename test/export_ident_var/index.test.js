@@ -11,7 +11,7 @@ const fs = Promise.promisifyAll(_fs);
 const OUT_PATH = path.resolve(__dirname, './vars.js');
 const SOURCE_PATH = path.resolve(__dirname, './vars.styl');
 
-describe('include option:', () => {
+describe('export ident var:', () => {
   let vars;
   before(() => {
     return Promise
@@ -26,9 +26,19 @@ describe('include option:', () => {
       });
   });
 
-  it('only matched var name exists', () => {
-    assert.strictEqual(vars.fooVarName(), 'some string');
-    assert.strictEqual(vars.barVarName, void 0);
-    assert.strictEqual(vars.bazVarName, void 0);
+  it('value', () => {
+    assert.strictEqual(vars.varName(), 'auto');
+  });
+
+  it('typeof', () => {
+    assert.strictEqual(typeof vars.varName(), 'string');
+  });
+
+  it('stylus node type', () => {
+    assert.strictEqual(vars.varName.type, 'ident');
+  });
+
+  it('stylus css string', () => {
+    assert.strictEqual(vars.varName.css, 'auto');
   });
 });

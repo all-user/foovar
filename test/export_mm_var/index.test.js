@@ -27,18 +27,18 @@ describe('export mm var:', () => {
   });
 
   it('value', () => {
-    assert.equal(vars.varName(), 1);
+    assert.strictEqual(vars.varName(), 1);
   });
 
   it('typeof', () => {
-    assert.equal(typeof vars.varName(), 'number');
+    assert.strictEqual(typeof vars.varName(), 'number');
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'mm');
+    assert.strictEqual(vars.varName.type, 'mm');
   });
 
   it('css string', () => {
-    assert.equal(vars.varName.css, '1mm');
+    assert.strictEqual(vars.varName.css, '1mm');
   });
 });

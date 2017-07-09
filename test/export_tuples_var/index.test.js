@@ -45,7 +45,7 @@ describe('export tuples var:', () => {
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'tuple');
+    assert.strictEqual(vars.varName.type, 'tuple');
     assert.deepEqual(vars.varName().map(e => e.type), ['tuple', 'tuple']);
   });
 

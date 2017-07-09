@@ -27,18 +27,18 @@ describe('export Hz var:', () => {
   });
 
   it('value', () => {
-    assert.equal(vars.varName(), 1);
+    assert.strictEqual(vars.varName(), 1);
   });
 
   it('typeof', () => {
-    assert.equal(typeof vars.varName(), 'number');
+    assert.strictEqual(typeof vars.varName(), 'number');
   });
 
   it('stylus node type', () => {
-    assert.equal(vars.varName.type, 'Hz');
+    assert.strictEqual(vars.varName.type, 'Hz');
   });
 
   it('css string', () => {
-    assert.equal(vars.varName.css, '1Hz');
+    assert.strictEqual(vars.varName.css, '1Hz');
   });
 });
