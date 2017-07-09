@@ -64,6 +64,8 @@ module.exports = class FoovarValue {
         console.error(`Can't generate CSS string: stylus.nodes.Call ${ exp.name }`);
         return;
       }
+    case 'Boolean':
+    case 'Null':
     case 'Object':
       return void 0;
     default:
@@ -114,6 +116,10 @@ module.exports = class FoovarValue {
       return 'rgba';
     case 'HSLA':
       return 'hsla';
+    case 'Boolean':
+      return 'boolean';
+    case 'Null':
+      return 'null';
     case 'Object':
       return 'hash';
     case 'Function':
@@ -135,6 +141,7 @@ module.exports = class FoovarValue {
     switch (exp.constructorName) {
     case 'Unit':
     case 'String':
+    case 'Boolean':
     case 'Function':
       return exp.val;
     case 'Ident':
@@ -145,6 +152,8 @@ module.exports = class FoovarValue {
       return this.resolveHslaValue(exp);
     case 'Object':
       return this.resolveObjectValue(exp);
+    case 'Null':
+      return null;
     case 'Call':
       switch (exp.name) {
       case 'cubic-bezier':
