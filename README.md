@@ -122,8 +122,8 @@ vars.fooBar.css // 10px
 |`false`|`false`|`'boolean'`|`undefined`|
 |`null`|`null`|`'null'`|`undefined`|
 |`cubic-bezier(1,0,1,0)`|`[1,0,1,0]`|`'cubic-bezier'`|`'cubic-bezier(1,0,1,0)'`|
-|`10px 20px 30px 40px`|`[FoovarValue instance x 4]`|`'tuple'`|`undefined`|
-|`1em, 2em, 3em, 4em`|`[FoovarValue instance x 4]`|`'list'`|`undefined`|
+|`10px 20px 30px 40px`|`[FoovarValue instance x 4]`|`'tuple'`|`['10px', '20px', '30px', '40px']`|
+|`1em, 2em, 3em, 4em`|`[FoovarValue instance x 4]`|`'list'`|`['1em', '2em', '3em', '4em']`|
 |`{ foo: 1em }`|`{ foo: FoovarValue instance }`|`'hash'`|`undefined`|
 
 ### Get inner value of `tuple`, `list`, `hash`
