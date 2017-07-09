@@ -1,10 +1,13 @@
 # History
 
+## v0.6.0 July 9, 2017
+- [New] Change to allow boolean and null value
+
 ## v0.5.1 May 24, 2017
-- Fix up, default value is affected after set `propertyCase` option.
+- [Fix] Default value had been affected by after setting `propertyCase` option
 
 ## v0.5.0 May 22, 2017
-- Add `propertyCase` option
+- [New] Add `propertyCase` option
 
 ## v0.4.4 May 3, 2017
 - Fix up
