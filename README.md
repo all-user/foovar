@@ -118,6 +118,9 @@ vars.fooBar.css // 10px
 |`rgba(11,22,33,.4)`|`[11,22,33,0.4]`|`'rgba'`|`'rgba(11,22,33,0.4)'`|
 |`hsl(11,22%,33%)`|`[11,22,33,1]`|`'hsla'`|`'hsla(11,22%,33%,1)'`|
 |`hsla(11,22%,33%,.4)`|`[11,22,33,0.4]`|`'hsla'`|`'hsla(11,22%,33%,0.4)'`|
+|`true`|`true`|`'boolean'`|`undefined`|
+|`false`|`false`|`'boolean'`|`undefined`|
+|`null`|`null`|`'null'`|`undefined`|
 |`cubic-bezier(1,0,1,0)`|`[1,0,1,0]`|`'cubic-bezier'`|`'cubic-bezier(1,0,1,0)'`|
 |`10px 20px 30px 40px`|`[FoovarValue instance x 4]`|`'tuple'`|`undefined`|
 |`1em, 2em, 3em, 4em`|`[FoovarValue instance x 4]`|`'list'`|`undefined`|
