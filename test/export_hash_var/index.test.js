@@ -50,6 +50,7 @@ describe('export hash var:', () => {
   });
 
   it('stylus css string', () => {
+    assert.strictEqual(vars.varName.css, void 0);
     assert.strictEqual(vars.varName().stringVar.css, 'outer');
     assert.strictEqual(vars.varName().nested().stringVar.css, 'inner');
   });
