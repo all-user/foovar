@@ -15,11 +15,15 @@ function convertToPlainObject(foovarValue, options) {
   }
 }
 
+function isNoRecursiveValue(v) {
+  return v == null || typeof v === 'string' || typeof v === 'boolean' || typeof v === 'number';
+}
+
 function convertToPlainObjectFromValue(foovarValue) {
   if (foovarValue.__is_foovarValue) {
     foovarValue = foovarValue();
   }
-  if (foovarValue == null || typeof foovarValue === 'string' || typeof foovarValue === 'number') {
+  if (isNoRecursiveValue(foovarValue)) {
     return foovarValue;
   } else if (Array.isArray(foovarValue)) {
     return foovarValue.map(convertToPlainObjectFromValue);
@@ -33,19 +37,19 @@ function convertToPlainObjectFromValue(foovarValue) {
 }
 
 function convertToPlainObjectFromCss(foovarValue) {
-  if (foovarValue instanceof FoovarValue) {
+  if (foovarValue.__is_foovarValue) {
     const foovarCss = foovarValue.css;
     const foovarType = foovarValue.type;
     foovarValue = foovarValue();
-    if (foovarValue == null) {
-      return foovarValue;
+    if (foovarValue == null || typeof foovarValue === 'boolean') {
+      return void 0;
     } else if (foovarType === 'tuple' || foovarType === 'list' || foovarType === 'hash') {
       return convertToPlainObjectFromCss(foovarValue);
     } else {
       return foovarCss;
     }
   } else {
-    if (foovarValue == null || typeof foovarValue === 'string' || typeof foovarValue === 'number') {
+    if (isNoRecursiveValue(foovarValue)) {
       return foovarValue;
     } else if (Array.isArray(foovarValue)) {
       return foovarValue.map(convertToPlainObjectFromCss);
@@ -60,18 +64,18 @@ function convertToPlainObjectFromCss(foovarValue) {
 }
 
 function convertToPlainObjectFromType(foovarValue) {
-  if (foovarValue instanceof FoovarValue) {
+  if (foovarValue.__is_foovarValue) {
     const foovarType = foovarValue.type;
     foovarValue = foovarValue();
-    if (foovarValue == null) {
-      return foovarValue;
+    if (foovarValue === void 0) {
+      return void 0;
     } else if (foovarType === 'tuple' || foovarType === 'list' || foovarType === 'hash') {
       return convertToPlainObjectFromType(foovarValue);
     } else {
       return foovarType;
     }
   } else {
-    if (foovarValue == null || typeof foovarValue === 'string' || typeof foovarValue === 'number') {
+    if (isNoRecursiveValue(foovarValue)) {
       return foovarValue;
     } else if (Array.isArray(foovarValue)) {
       return foovarValue.map(convertToPlainObjectFromType);
