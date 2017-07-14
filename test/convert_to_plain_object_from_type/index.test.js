@@ -43,6 +43,18 @@ describe('convertToPlainObject', () => {
       assert.strictEqual(vars.varString, 'string');
     });
 
+    it('true', () => {
+      assert.strictEqual(vars.varTrue, 'boolean');
+    });
+
+    it('false', () => {
+      assert.strictEqual(vars.varFalse, 'boolean');
+    });
+
+    it('null', () => {
+      assert.strictEqual(vars.varNull, 'null');
+    });
+
     it('ident', () => {
       assert.strictEqual(vars.varIdent, 'ident');
     });
@@ -86,6 +98,18 @@ describe('convertToPlainObject', () => {
 
       it('string', () => {
         assert.strictEqual(nestedVars.varString, 'string');
+      });
+
+      it('true', () => {
+        assert.strictEqual(nestedVars.varTrue, 'boolean');
+      });
+
+      it('false', () => {
+        assert.strictEqual(nestedVars.varFalse, 'boolean');
+      });
+
+      it('null', () => {
+        assert.strictEqual(nestedVars.varNull, 'null');
       });
 
       it('ident', () => {
@@ -134,6 +158,21 @@ describe('convertToPlainObject', () => {
       it('string', () => {
         assert.strictEqual(varsTuple[0].varString, 'string');
         assert.strictEqual(varsTuple[1].varString, 'string');
+      });
+
+      it('true', () => {
+        assert.strictEqual(varsTuple[0].varTrue, 'boolean');
+        assert.strictEqual(varsTuple[1].varTrue, 'boolean');
+      });
+
+      it('false', () => {
+        assert.strictEqual(varsTuple[0].varFalse, 'boolean');
+        assert.strictEqual(varsTuple[1].varFalse, 'boolean');
+      });
+
+      it('null', () => {
+        assert.strictEqual(varsTuple[0].varNull, 'null');
+        assert.strictEqual(varsTuple[1].varNull, 'null');
       });
 
       it('ident', () => {
@@ -191,6 +230,21 @@ describe('convertToPlainObject', () => {
       it('string', () => {
         assert.strictEqual(varsList[0].varString, 'string');
         assert.strictEqual(varsList[1].varString, 'string');
+      });
+
+      it('true', () => {
+        assert.strictEqual(varsList[0].varTrue, 'boolean');
+        assert.strictEqual(varsList[1].varTrue, 'boolean');
+      });
+
+      it('false', () => {
+        assert.strictEqual(varsList[0].varFalse, 'boolean');
+        assert.strictEqual(varsList[1].varFalse, 'boolean');
+      });
+
+      it('null', () => {
+        assert.strictEqual(varsList[0].varNull, 'null');
+        assert.strictEqual(varsList[1].varNull, 'null');
       });
 
       it('ident', () => {

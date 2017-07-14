@@ -43,6 +43,18 @@ describe('convertToPlainObject', () => {
       assert.strictEqual(vars.varString, 'some text');
     });
 
+    it('true', () => {
+      assert.strictEqual(vars.varTrue, true);
+    });
+
+    it('false', () => {
+      assert.strictEqual(vars.varFalse, false);
+    });
+
+    it('null', () => {
+      assert.strictEqual(vars.varNull, null);
+    });
+
     it('ident', () => {
       assert.strictEqual(vars.varIdent, 'auto');
     });
@@ -86,6 +98,18 @@ describe('convertToPlainObject', () => {
 
       it('string', () => {
         assert.strictEqual(nestedVars.varString, 'some text');
+      });
+
+      it('true', () => {
+        assert.strictEqual(nestedVars.varTrue, true);
+      });
+
+      it('false', () => {
+        assert.strictEqual(nestedVars.varFalse, false);
+      });
+
+      it('null', () => {
+        assert.strictEqual(nestedVars.varNull, null);
       });
 
       it('ident', () => {
@@ -134,6 +158,21 @@ describe('convertToPlainObject', () => {
       it('string', () => {
         assert.strictEqual(varsTuple[0].varString, 'some text');
         assert.strictEqual(varsTuple[1].varString, 'some text');
+      });
+
+      it('true', () => {
+        assert.strictEqual(varsTuple[0].varTrue, true);
+        assert.strictEqual(varsTuple[1].varTrue, true);
+      });
+
+      it('false', () => {
+        assert.strictEqual(varsTuple[0].varFalse, false);
+        assert.strictEqual(varsTuple[1].varFalse, false);
+      });
+
+      it('null', () => {
+        assert.strictEqual(varsTuple[0].varNull, null);
+        assert.strictEqual(varsTuple[1].varNull, null);
       });
 
       it('ident', () => {
@@ -191,6 +230,21 @@ describe('convertToPlainObject', () => {
       it('string', () => {
         assert.strictEqual(varsList[0].varString, 'some text');
         assert.strictEqual(varsList[1].varString, 'some text');
+      });
+
+      it('true', () => {
+        assert.strictEqual(varsList[0].varTrue, true);
+        assert.strictEqual(varsList[1].varTrue, true);
+      });
+
+      it('false', () => {
+        assert.strictEqual(varsList[0].varFalse, false);
+        assert.strictEqual(varsList[1].varFalse, false);
+      });
+
+      it('null', () => {
+        assert.strictEqual(varsList[0].varNull, null);
+        assert.strictEqual(varsList[1].varNull, null);
       });
 
       it('ident', () => {
