@@ -1,5 +1,8 @@
 # History
 
+## v0.6.1 July 14, 2017
+- [Fix] `convertToPlainObject` had been returning incorrect value when boolean or null value given [\#11](all-user/foovar#11)
+
 ## v0.6.0 July 9, 2017
 - [New] Change to allow boolean and null value
 
